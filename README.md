@@ -23,3 +23,5 @@ userid不要重了，写大点
 
 进一步可以发公告钓鱼
 ![image](https://github.com/pykiller/API-T00L/assets/38202442/1e63ea90-70c5-4fa1-8cd7-271522d2c7a2)
+
+## 4、获取应用列表，这个会泄露一些没备案的难搜的资产。
