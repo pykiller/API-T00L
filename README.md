@@ -16,12 +16,15 @@ userid不要重了，写大点
 
 ## 3、发公告钓鱼
 获取管理员信息，得到管理员userid。
+
 ![image](https://github.com/pykiller/API-T00L/assets/38202442/605f27a2-e964-481a-b3b7-1d16334561e6)
 
 查userid可以得到部门id dept_id
+
 ![image](https://github.com/pykiller/API-T00L/assets/38202442/58f11808-904d-4db4-bdf8-e76e7a1b9349)
 
 进一步可以发公告钓鱼
+
 ![image](https://github.com/pykiller/API-T00L/assets/38202442/1e63ea90-70c5-4fa1-8cd7-271522d2c7a2)
 
 ## 4、获取应用列表，这个会泄露一些没备案的难搜的资产。
