@@ -1,0 +1,33 @@
+/* 标签页标题样式 */
+.tab {
+    -fx-background-color: #f1f1f1; /* 标签页背景颜色 */
+    -fx-text-fill: white; /* 标签页文本颜色 */
+    -fx-font-size: 13px; /* 标签页字体大小 */
+}
+
+/* 按钮样式 */
+.button {
+    -fx-background-color: #cd8c95; /* 按钮背景颜色 */
+    -fx-text-fill: white; /* 按钮文本颜色 */
+    -fx-font-size: 13px; /* 按钮字体大小 */
+    -fx-effect: dropshadow(gaussian, rgba(159, 158, 158, 0.4), 10, 0, 0, 0);
+}
+
+/* 文本框样式 */
+.text-field {
+    -fx-background-color: #ecf0f1; /* 文本框背景颜色 */
+    -fx-font-size: 13px; /* 文本框字体大小 */
+    -fx-border-width: 1px; /* 文本框边框宽度 */
+    -fx-border-color: #bdc3c7; /* 文本框边框颜色 */
+    -fx-effect: dropshadow(gaussian, rgba(159, 158, 158, 0.4), 8, 0, 0, 0);
+    -fx-background-radius: 8px; /* 圆角半径 */
+}
+
+/* 标签样式 */
+.label {
+    -fx-font-size: 13px; /* 标签字体大小 */
+    -fx-font-weight: bold; /* 标签字体粗细 */
+}
+
+
+
