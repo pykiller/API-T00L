@@ -48,11 +48,12 @@ userid不要重了，写大点。
 
 ## 2、新建用户，填入有效手机号，加入组织中可以直接用手机号登录该企业。
 
+<img width="585" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/a7531ef6-d7a3-4ad3-9441-c8f341d4f091">
 
 
 而且加进去就分配邮箱，可通过邮箱和企业微信钓鱼。
 
-![image](https://github.com/pykiller/API-T00L/assets/38202442/a6696792-4a83-4c1d-8997-260f99900a70)
+<img width="300" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/a6696792-4a83-4c1d-8997-260f99900a70">
 
 
 
