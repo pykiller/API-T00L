@@ -58,7 +58,7 @@ userid不要重了，写大点。
 
 ## 3、还可以通过获取邀请二维码加入到企业。
 
-<img width="662" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/cc60e6b7-177b-4c29-b0e9-4c26b8bee14d">
+<img width="300" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/cc60e6b7-177b-4c29-b0e9-4c26b8bee14d">
 
-<img width="931" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/a9203c39-14b2-4ee0-a2e4-6c4b59626893">
+<img width="600" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/a9203c39-14b2-4ee0-a2e4-6c4b59626893">
 
