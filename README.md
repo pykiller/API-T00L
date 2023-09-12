@@ -26,7 +26,7 @@ userid不要重了，写大点。
 
 
 
-查userid可以得到部门id dept_id
+查userid可以得到部门id dept_id，这里只做了对部门发公告，实际操作中针对个人发公告效果不如直接加用户钓鱼好使。
 
 ![image](https://github.com/pykiller/API-T00L/assets/38202442/e15f4314-aebb-4548-8931-3dc244cacfaf)
 
