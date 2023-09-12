@@ -1,7 +1,7 @@
 # API-T00L v1.0
 期望是针对互联网各大API泄露的利用工具，包含钉钉、企业微信、飞书等。目前只做出了钉钉和企业微信，别问，就是懒。特别鸣谢chatgpt，代码好帮手。
 目前界面长这样，布局拉胯，能用就行。
-![1](https://github.com/pykiller/API-T00L/assets/38202442/597e89ae-a7fb-4548-bb6d-09e52b6f924e)
+<img width="585" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/597e89ae-a7fb-4548-bb6d-09e52b6f924e">
 
 
 # 食用方法
@@ -9,7 +9,7 @@
 # 钉钉
 
 ## 1、肯定你得有ak、as。填进去获取token
-![image](https://github.com/pykiller/API-T00L/assets/38202442/6a27185b-2094-4779-9a0c-b2226c44335b)
+<img width="585" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/6a27185b-2094-4779-9a0c-b2226c44335b">
 
 
 ## 2、建用户
@@ -59,7 +59,7 @@ userid不要重了，写大点。
 
 ## 3、还可以通过获取邀请二维码加入到企业。
 
-<img width="300" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/cc60e6b7-177b-4c29-b0e9-4c26b8bee14d">
+<img width="585" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/cc60e6b7-177b-4c29-b0e9-4c26b8bee14d">
 
 <img width="600" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/a9203c39-14b2-4ee0-a2e4-6c4b59626893">
 
