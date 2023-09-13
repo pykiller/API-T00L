@@ -14,6 +14,7 @@ import weixin.WeiXinPacketSender;
 public class HttpPacketToolGUI extends Application {
 
     private TextArea logTextArea;
+    private TextArea wxlogTextArea;
     private TextField appKeyTextField;
     private PasswordField appSecretPasswordField;
     private TextField accessTokenTextField;
@@ -418,17 +419,17 @@ public class HttpPacketToolGUI extends Application {
 
 
         // 设置GridPane的布局
-        logTextArea = new TextArea();
-        logTextArea.setPrefHeight(50);
-        logTextArea.setEditable(false);
+        wxlogTextArea = new TextArea();
+        wxlogTextArea.setPrefHeight(50);
+        wxlogTextArea.setEditable(false);
         // 设置GridPane的布局
-        GridPane.setHgrow(logTextArea, Priority.ALWAYS);
-        GridPane.setColumnSpan(logTextArea, 2);
-        gridPane.add(logTextArea, 0, 12, 4, 14); // 让文本区域跨足两列并占据一行
+        GridPane.setHgrow(wxlogTextArea, Priority.ALWAYS);
+        GridPane.setColumnSpan(wxlogTextArea, 2);
+        gridPane.add(wxlogTextArea, 0, 12, 4, 14); // 让文本区域跨足两列并占据一行
 
 
         // 创建一个ScrollPane来包装日志文本区域，以便用户可以滚动查看
-        ScrollPane logScrollPane = new ScrollPane(logTextArea);
+        ScrollPane logScrollPane = new ScrollPane(wxlogTextArea);
         logScrollPane.setFitToWidth(true);
         logScrollPane.setFitToHeight(true);
 
@@ -453,7 +454,7 @@ public class HttpPacketToolGUI extends Application {
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
 
-            logTextArea.appendText("获取Token的响应:\n" + tokenResponse + "\n");
+            wxlogTextArea.appendText("获取Token的响应:\n" + tokenResponse + "\n");
         });
         getJoinButton.setOnAction(e -> {
             String accessToken = accessTokenTextField.getText();
@@ -466,7 +467,7 @@ public class HttpPacketToolGUI extends Application {
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
 
-            logTextArea.appendText("获取邀请二维码的响应:\n" + tokenResponse + "\n");
+            wxlogTextArea.appendText("获取邀请二维码的响应:\n" + tokenResponse + "\n");
         });
         getUserlistButton.setOnAction(e -> {
             String accessToken = accessTokenTextField.getText();
@@ -480,7 +481,7 @@ public class HttpPacketToolGUI extends Application {
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
 
-            logTextArea.appendText("获取用户列表的响应(默认1000条):\n" + userlistResponse + "\n");
+            wxlogTextArea.appendText("获取用户列表的响应(默认1000条):\n" + userlistResponse + "\n");
         });
 
         wxcreateUserButton.setOnAction(e -> {
@@ -503,7 +504,7 @@ public class HttpPacketToolGUI extends Application {
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
 
-            logTextArea.appendText("新建账号的响应:\n" + wxcreateUserResponse + "\n");
+            wxlogTextArea.appendText("新建账号的响应:\n" + wxcreateUserResponse + "\n");
         });
 
         delUserButton.setOnAction(e -> {
@@ -520,7 +521,7 @@ public class HttpPacketToolGUI extends Application {
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
 
-            logTextArea.appendText("删除用户的响应:\n" + delUserResponse + "\n");
+            wxlogTextArea.appendText("删除用户的响应:\n" + delUserResponse + "\n");
         });
 
         getUserButton.setOnAction(e -> {
@@ -536,7 +537,7 @@ public class HttpPacketToolGUI extends Application {
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
 
-            logTextArea.appendText("获取账户信息的响应:\n" + getUserResponse + "\n");
+            wxlogTextArea.appendText("获取账户信息的响应:\n" + getUserResponse + "\n");
         });
 
         return gridPane;
