@@ -16,14 +16,18 @@
 # 钉钉
 
 ## 1、肯定你得有ak、as。填进去获取token
-<img width="585" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/6a27185b-2094-4779-9a0c-b2226c44335b">
+<img width="585" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/0ac3ba1a-b780-4515-9d41-a4eff9694506">
+
+
 
 
 ## 2、建用户
 最简单的做法，直接填入有效手机号，加入组织中可以直接用手机号登录该企业。
 userid不要重了，写大点。
 删除按钮是根据userid来删除的
-![image](https://github.com/pykiller/API-T00L/assets/38202442/ca48b14b-f5a8-4874-90bc-375187d34c46)
+
+![image](https://github.com/pykiller/API-T00L/assets/38202442/d86b4c2d-68c8-4753-aed3-c32fb47eb3df)
+
 
 
 
@@ -31,18 +35,24 @@ userid不要重了，写大点。
 ## 3、发公告钓鱼
 获取管理员信息，得到管理员userid。
 
-![image](https://github.com/pykiller/API-T00L/assets/38202442/1d17c5aa-b76d-491b-a38d-953895a69140)
+
+![image](https://github.com/pykiller/API-T00L/assets/38202442/548bfb5f-3106-4a64-b369-9032cc121ae9)
+
+
 
 
 
 查userid可以得到部门id dept_id，这里只做了对部门发公告，实际操作中针对个人发公告效果不如直接加用户钓鱼好使。
 
-![image](https://github.com/pykiller/API-T00L/assets/38202442/e15f4314-aebb-4548-8931-3dc244cacfaf)
+
+
+![image](https://github.com/pykiller/API-T00L/assets/38202442/c9c20345-1ea1-4e2c-a5f6-cce58f05a02e)
 
 
 进一步可以发公告钓鱼
 
-![image](https://github.com/pykiller/API-T00L/assets/38202442/aa04d127-3e5e-4ce1-b8ef-49c63aee6d3f)
+![image](https://github.com/pykiller/API-T00L/assets/38202442/256fd36c-d7aa-405f-bea3-22098a9cc9ad)
+
 
 
 ## 4、获取应用列表，这个会泄露一些没备案的难搜的资产。
