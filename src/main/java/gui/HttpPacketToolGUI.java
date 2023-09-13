@@ -18,6 +18,9 @@ public class HttpPacketToolGUI extends Application {
     private TextField appKeyTextField;
     private PasswordField appSecretPasswordField;
     private TextField accessTokenTextField;
+    private TextField wxappKeyTextField;
+    private PasswordField wxappSecretPasswordField;
+    private TextField wxaccessTokenTextField;
     private TextField proxyHostTextField;
     private TextField proxyPortTextField;
     private TextField mobileTextField;
@@ -31,6 +34,13 @@ public class HttpPacketToolGUI extends Application {
     private TextField operation_useridTextField;
     private TextField deptid_listTextField;
     private CheckBox useProxyCheckBox;
+    private TextField wxmobileTextField;
+    private TextField wxnameTextField;
+    private TextField wxtitleTextField;
+    private TextField wxuseridTextField;
+    private TextField wxUserIdTextField;
+    private TextField wxuserTextField;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -38,7 +48,7 @@ public class HttpPacketToolGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("API-T00l利用工具 V1.0 @PYkiller");
+        primaryStage.setTitle("API-T00l利用工具 V1.1 @PYkiller");
 
         // 创建一个根布局为TabPane，用于添加标签页
         TabPane tabPane = new TabPane();
@@ -51,15 +61,19 @@ public class HttpPacketToolGUI extends Application {
         Tab weChatWorkTab = new Tab("企业微信");
         weChatWorkTab.setContent(createWeChatWorkTabContent());
 
+        // 创建企业微信标签页
+        Tab ProxySettingsTab = new Tab("代理设置");
+        ProxySettingsTab.setContent(createProxySettingsContent());
+
         // 将标签页添加到TabPane
-        tabPane.getTabs().addAll(dingTalkTab, weChatWorkTab);
+        tabPane.getTabs().addAll(dingTalkTab, weChatWorkTab,ProxySettingsTab);
 
         // 创建一个根布局为BorderPane，将TabPane放在顶部
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(tabPane);
         borderPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         // 将BorderPane添加到Scene中
-        Scene scene = new Scene(borderPane, 650, 690);
+        Scene scene = new Scene(borderPane, 650, 670);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -73,11 +87,7 @@ public class HttpPacketToolGUI extends Application {
 
         // 创建输入框和按钮
         // 添加勾选框到用户界面
-        useProxyCheckBox = new CheckBox("使用代理");
-        useProxyCheckBox.setSelected(false); // 默认情况下不使用代理
-        useProxyCheckBox.setOnAction(e -> {
-            ProxyManager.getInstance().setUseProxy(useProxyCheckBox.isSelected());
-        });
+
         Label appKeyLabel = new Label("AppKey:");
         appKeyTextField = new TextField();
 
@@ -88,11 +98,7 @@ public class HttpPacketToolGUI extends Application {
         accessTokenTextField = new TextField();
         accessTokenTextField.setPromptText("输入 Access Token");
 
-        Label proxyHostLabel = new Label("HTTP代理主机:");
-        proxyHostTextField = new TextField("127.0.0.1");
 
-        Label proxyPortLabel = new Label("HTTP代理端口:");
-        proxyPortTextField = new TextField("8080");
 
         Button getTokenButton = new Button("获取Token");
         Button getAdminButton = new Button("获取管理员信息");
@@ -127,21 +133,17 @@ public class HttpPacketToolGUI extends Application {
         // 设置每个标签的最小宽度，以保持对齐
         appKeyLabel.setMinWidth(170);
         appSecretLabel.setMinWidth(170);
-        accessTokenLabel.setMinWidth(170);
-        proxyHostLabel.setMinWidth(100);
-        proxyPortLabel.setMinWidth(100);
+        accessTokenLabel.setMinWidth(100);
+        appKeyTextField.setMinWidth(170);
+
 
         // 添加元素到GridPane中
         gridPane.add(appKeyLabel, 0, 0);
         gridPane.add(appKeyTextField, 1, 0);
         gridPane.add(appSecretLabel, 0, 1);
         gridPane.add(appSecretPasswordField, 1, 1);
-        gridPane.add(accessTokenLabel, 0, 2);
-        gridPane.add(accessTokenTextField, 1, 2);
-        gridPane.add(proxyHostLabel, 2, 0);
-        gridPane.add(proxyHostTextField, 3, 0);
-        gridPane.add(proxyPortLabel, 2, 1);
-        gridPane.add(proxyPortTextField, 3, 1);
+        gridPane.add(accessTokenLabel, 2, 0);
+        gridPane.add(accessTokenTextField, 3, 0);
         gridPane.add(getTokenButton, 0, 5);
         gridPane.add(getAdminButton, 1, 5);
         gridPane.add(getAppButton, 0, 6);
@@ -164,7 +166,6 @@ public class HttpPacketToolGUI extends Application {
         gridPane.add(nameTextField, 3, 8);
         gridPane.add(titleLabel, 2, 9);
         gridPane.add(titleTextField, 3, 9);
-        gridPane.add(useProxyCheckBox, 2, 2);
         gridPane.add(xForwardedForLabel, 0, 3);
         gridPane.add(xForwardedForTextField, 1, 3);
 
@@ -242,21 +243,21 @@ public class HttpPacketToolGUI extends Application {
             logTextArea.appendText("新建账号的响应:\n" + createUserResponse + "\n");
         });
         delUserButton.setOnAction(e -> {
-                    String accessToken = accessTokenTextField.getText();
-                    String xForwardedFor = xForwardedForTextField.getText();
-                    String UserId =  UserIdTextField.getText();
+            String accessToken = accessTokenTextField.getText();
+            String xForwardedFor = xForwardedForTextField.getText();
+            String UserId =  UserIdTextField.getText();
 
 
-                    // 设置全局代理
-                    ProxyManager.getInstance().setProxy(proxyHostTextField.getText(), Integer.parseInt(proxyPortTextField.getText()));
+            // 设置全局代理
+            ProxyManager.getInstance().setProxy(proxyHostTextField.getText(), Integer.parseInt(proxyPortTextField.getText()));
 
-                    // 执行获取管理员的HTTP请求，将 access_token 添加到头部
-                    String delUserResponse = packetSender.executeHttpGetRequest("https://oapi.dingtalk.com/topapi/v2/user/delete?access_token=" + accessToken + "&userid=" + UserId,xForwardedFor);
+            // 执行获取管理员的HTTP请求，将 access_token 添加到头部
+            String delUserResponse = packetSender.executeHttpGetRequest("https://oapi.dingtalk.com/topapi/v2/user/delete?access_token=" + accessToken + "&userid=" + UserId,xForwardedFor);
 
-                    // 清除代理设置，以便后续请求不使用代理
-                    ProxyManager.getInstance().clearProxy();
+            // 清除代理设置，以便后续请求不使用代理
+            ProxyManager.getInstance().clearProxy();
 
-                    logTextArea.appendText("删除用户的响应:\n" + delUserResponse + "\n");
+            logTextArea.appendText("删除用户的响应:\n" + delUserResponse + "\n");
         });
 
         getAppButton.setOnAction(e -> {
@@ -344,20 +345,14 @@ public class HttpPacketToolGUI extends Application {
             ProxyManager.getInstance().setUseProxy(useProxyCheckBox.isSelected());
         });
         Label appKeyLabel = new Label("Corpid:");
-        appKeyTextField = new TextField();
+        wxappKeyTextField = new TextField();
 
         Label appSecretLabel = new Label("Corpsecret:");
-        appSecretPasswordField = new PasswordField();
+        wxappSecretPasswordField = new PasswordField();
 
-        Label accessTokenLabel = new Label("Access Token:");
-        accessTokenTextField = new TextField();
-        accessTokenTextField.setPromptText("输入 Access Token");
-
-        Label proxyHostLabel = new Label("HTTP代理主机:");
-        proxyHostTextField = new TextField("127.0.0.1");
-
-        Label proxyPortLabel = new Label("HTTP代理端口:");
-        proxyPortTextField = new TextField("8080");
+        Label wxaccessTokenLabel = new Label("Access Token:");
+        wxaccessTokenTextField = new TextField();
+        wxaccessTokenTextField.setPromptText("输入 Access Token");
 
         Button getTokenButton = new Button("获取Token");
         Button getJoinButton = new Button("获取邀请二维码");
@@ -365,16 +360,16 @@ public class HttpPacketToolGUI extends Application {
         Button wxcreateUserButton = new Button("新建账号");
         Button delUserButton = new Button("删除账号");
         Label useridLabel = new Label("UserID:");
-        UserIdTextField = new TextField("64537405");
+        wxUserIdTextField = new TextField("64537405");
         Label mobileLabel = new Label("手机号:");
-        mobileTextField = new TextField("18888888888");
+        wxmobileTextField = new TextField("18888888888");
         Label nameLabel = new Label("用户名:");
-        nameTextField = new TextField("管理员");
+        wxnameTextField = new TextField("管理员");
         Label usernameLabel = new Label("用户别称:");
-        userTextField = new TextField("zhangsan");
+        wxuserTextField = new TextField("zhangsan");
         Label titleLabel = new Label("职位:");
-        titleTextField = new TextField("系统管理员");
-        useridTextField = new TextField("userID");
+        wxtitleTextField = new TextField("系统管理员");
+        wxuseridTextField = new TextField("userID");
         Button getUserButton = new Button("获取账号信息");
 
 
@@ -382,22 +377,17 @@ public class HttpPacketToolGUI extends Application {
         // 设置每个标签的最小宽度，以保持对齐
         appKeyLabel.setMinWidth(170);
         appSecretLabel.setMinWidth(170);
-        accessTokenLabel.setMinWidth(170);
-        proxyHostLabel.setMinWidth(100);
-        proxyPortLabel.setMinWidth(100);
+        wxaccessTokenLabel.setMinWidth(100);
+        wxappKeyTextField.setMinWidth(170);
+
 
         // 添加元素到GridPane中
         gridPane.add(appKeyLabel, 0, 0);
-        gridPane.add(appKeyTextField, 1, 0);
+        gridPane.add(wxappKeyTextField, 1, 0);
         gridPane.add(appSecretLabel, 0, 1);
-        gridPane.add(appSecretPasswordField, 1, 1);
-        gridPane.add(accessTokenLabel, 0, 2);
-        gridPane.add(accessTokenTextField, 1, 2);
-        gridPane.add(proxyHostLabel, 2, 0);
-        gridPane.add(proxyHostTextField, 3, 0);
-        gridPane.add(proxyPortLabel, 2, 1);
-        gridPane.add(proxyPortTextField, 3, 1);
-        gridPane.add(useProxyCheckBox, 2, 2);
+        gridPane.add(wxappSecretPasswordField, 1, 1);
+        gridPane.add(wxaccessTokenLabel, 2, 0);
+        gridPane.add(wxaccessTokenTextField, 3, 0);
         gridPane.add(getTokenButton, 0, 6);
         gridPane.add(getJoinButton, 1, 6);
         gridPane.add(getUserlistButton, 0, 7);
@@ -405,16 +395,16 @@ public class HttpPacketToolGUI extends Application {
         gridPane.add(wxcreateUserButton, 2, 6);
         gridPane.add(delUserButton, 3, 6);
         gridPane.add(useridLabel, 2, 7);
-        gridPane.add(UserIdTextField, 3, 7);
+        gridPane.add(wxUserIdTextField, 3, 7);
         gridPane.add(mobileLabel, 2, 8);
-        gridPane.add(mobileTextField, 3, 8);
+        gridPane.add(wxmobileTextField, 3, 8);
         gridPane.add(nameLabel, 2, 9);
-        gridPane.add(nameTextField, 3, 9);
+        gridPane.add(wxnameTextField, 3, 9);
         gridPane.add(titleLabel, 2, 10);
-        gridPane.add(titleTextField, 3, 10);
+        gridPane.add(wxtitleTextField, 3, 10);
         gridPane.add(usernameLabel, 2, 11);
-        gridPane.add(userTextField, 3, 11);
-        gridPane.add(useridTextField, 1, 8);
+        gridPane.add(wxuserTextField, 3, 11);
+        gridPane.add(wxuseridTextField, 1, 8);
         gridPane.add(getUserButton, 0, 8);
 
 
@@ -441,8 +431,8 @@ public class HttpPacketToolGUI extends Application {
         WeiXinPacketSender packetSender = new WeiXinPacketSender();
 
         getTokenButton.setOnAction(e -> {
-            String corpid = appKeyTextField.getText();
-            String corpsecret = appSecretPasswordField.getText();
+            String corpid = wxappKeyTextField.getText();
+            String corpsecret = wxappSecretPasswordField.getText();
 
 
             // 设置全局代理
@@ -457,7 +447,7 @@ public class HttpPacketToolGUI extends Application {
             wxlogTextArea.appendText("获取Token的响应:\n" + tokenResponse + "\n");
         });
         getJoinButton.setOnAction(e -> {
-            String accessToken = accessTokenTextField.getText();
+            String accessToken = wxaccessTokenTextField.getText();
             // 设置全局代理
             ProxyManager.getInstance().setProxy(proxyHostTextField.getText(), Integer.parseInt(proxyPortTextField.getText()));
 
@@ -470,7 +460,7 @@ public class HttpPacketToolGUI extends Application {
             wxlogTextArea.appendText("获取邀请二维码的响应:\n" + tokenResponse + "\n");
         });
         getUserlistButton.setOnAction(e -> {
-            String accessToken = accessTokenTextField.getText();
+            String accessToken = wxaccessTokenTextField.getText();
             String wxgetUserlistRequestBody = packetSender.wxgetUserlistRequestBody();
             // 设置全局代理
             ProxyManager.getInstance().setProxy(proxyHostTextField.getText(), Integer.parseInt(proxyPortTextField.getText()));
@@ -485,12 +475,12 @@ public class HttpPacketToolGUI extends Application {
         });
 
         wxcreateUserButton.setOnAction(e -> {
-            String accessToken = accessTokenTextField.getText();
-            String mobile = mobileTextField.getText();
-            String name = nameTextField.getText();
-            String title = titleTextField.getText();
-            String userid = UserIdTextField.getText();
-            String user = userTextField.getText();
+            String accessToken = wxaccessTokenTextField.getText();
+            String mobile = wxmobileTextField.getText();
+            String name = wxnameTextField.getText();
+            String title = wxtitleTextField.getText();
+            String userid = wxUserIdTextField.getText();
+            String user = wxuserTextField.getText();
 
             String wxcreateUserRequestBody = packetSender.wxgetAddUserRequestBody(mobile, name, title,userid,user);
 
@@ -508,8 +498,8 @@ public class HttpPacketToolGUI extends Application {
         });
 
         delUserButton.setOnAction(e -> {
-            String accessToken = accessTokenTextField.getText();
-            String UserId =  UserIdTextField.getText();
+            String accessToken = wxaccessTokenTextField.getText();
+            String UserId =  wxUserIdTextField.getText();
 
 
             // 设置全局代理
@@ -525,8 +515,8 @@ public class HttpPacketToolGUI extends Application {
         });
 
         getUserButton.setOnAction(e -> {
-            String accessToken = accessTokenTextField.getText();
-            String userid = useridTextField.getText();
+            String accessToken = wxaccessTokenTextField.getText();
+            String userid = wxuseridTextField.getText();
 
             // 设置全局代理
             ProxyManager.getInstance().setProxy(proxyHostTextField.getText(), Integer.parseInt(proxyPortTextField.getText()));
@@ -542,6 +532,39 @@ public class HttpPacketToolGUI extends Application {
 
         return gridPane;
     }
+
+    private Pane createProxySettingsContent() {
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(10));
+        gridPane.setHgap(14);
+        gridPane.setVgap(14);
+        useProxyCheckBox = new CheckBox("使用代理");
+        useProxyCheckBox.setSelected(false); // 默认情况下不使用代理
+        useProxyCheckBox.setOnAction(e -> {
+            ProxyManager.getInstance().setUseProxy(useProxyCheckBox.isSelected());
+        });
+
+
+        // 将useProxyCheckBox及其相关组件添加到proxyGridPane中
+        Label proxyHostLabel = new Label("HTTP代理主机:");
+        proxyHostTextField = new TextField("127.0.0.1");
+
+        Label proxyPortLabel = new Label("HTTP代理端口:");
+        proxyPortTextField = new TextField("8080");
+        proxyHostLabel.setMinWidth(100);
+        proxyPortLabel.setMinWidth(100);
+
+        gridPane.add(proxyHostLabel, 2, 0);
+        gridPane.add(proxyHostTextField, 3, 0);
+        gridPane.add(proxyPortLabel, 2, 1);
+        gridPane.add(proxyPortTextField, 3, 1);
+        gridPane.add(useProxyCheckBox, 2, 2);
+
+        // 返回代理设置标签页的内容
+        return gridPane;
+    }
+
+
 
 
 }
