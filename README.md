@@ -85,3 +85,18 @@ userid不要重了，写大点。
 
 <img width="600" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/a9203c39-14b2-4ee0-a2e4-6c4b59626893">
 
+
+# 飞书
+实际利用的较少，一般都是劫持cookie做钓鱼用。
+
+## 1、获取tenant_access_token
+
+## 2、新建用户，填入有效手机号，加入组织中可以直接用手机号登录该企业。
+需要注意，open_department_id为查询到的部门id，用户默认是放根部门，比较明显。可以放小部门里。
+
+<img width="585" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/e6ca4650-d93c-4c5f-b087-7e2ea880f18c">
+
+<img width="400" alt="image" src="https://github.com/pykiller/API-T00L/assets/38202442/90e2b5f4-535e-4ead-a526-6d18d4b4d5ee)">
+
+## 3、公告问题，直接手机号登进去就可以发，没看到发公告的api接口。
+
