@@ -12,6 +12,8 @@ import javafx.scene.Node;
 import weixin.WeiXinPacketSender;
 import feishu.FeiShuPacketSender;
 
+import java.nio.charset.StandardCharsets;
+
 public class HttpPacketToolGUI extends Application {
 
     private TextArea logTextArea;
@@ -218,6 +220,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            tokenResponse = new String(tokenResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("获取Token的响应:\n" + tokenResponse + "\n");
         });
@@ -234,6 +237,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            adminResponse = new String(adminResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("获取管理员的响应:\n" + adminResponse + "\n");
         });
@@ -255,6 +259,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            createUserResponse = new String(createUserResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("新建账号的响应:\n" + createUserResponse + "\n");
         });
@@ -272,6 +277,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            delUserResponse = new String(delUserResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("删除用户的响应:\n" + delUserResponse + "\n");
         });
@@ -288,6 +294,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            AppResponse = new String(AppResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("获取应用列表的响应:\n" + AppResponse + "\n");
         });
@@ -303,6 +310,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            getRoleResponse = new String(getRoleResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("获取角色的响应:\n" + getRoleResponse + "\n");
         });
@@ -319,6 +327,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            getUserResponse = new String(getUserResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("获取账户信息的响应:\n" + getUserResponse + "\n");
         });
@@ -340,6 +349,7 @@ public class HttpPacketToolGUI extends Application {
 
             // 清除代理设置，以便后续请求不使用代理
             ProxyManager.getInstance().clearProxy();
+            getblackboardResponse = new String(getblackboardResponse.getBytes(), StandardCharsets.UTF_8);
 
             logTextArea.appendText("发公告的响应:\n" + getblackboardResponse + "\n");
         });
